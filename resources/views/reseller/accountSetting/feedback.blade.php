@@ -1,0 +1,157 @@
+@php
+    use \App\Http\Controllers\ResellerController;
+    use App\AppOption;
+    $per_page = ResellerController::page_limit();
+    $feedback_options = AppOption::get_merchant_feedback();
+@endphp
+@extends('layouts.resellercontent')
+@section('resellercontent')
+
+<style>
+    .margin{
+       
+   margin-left: 60px;
+}
+    
+
+    </style>
+
+
+<section id="about-1" class="about-1">
+    <div class="container-1">
+        <div class="row">
+          <div class="col-lg-6 d-flex flex-column justify-contents-center" data-aos="fade-left">
+            <div class="content-1 pt-4 pt-lg-0">
+                <h3 class="margH">Share your feedback! </h3>
+         
+            </div>
+        </div>
+       
+        </div>
+
+    </div>
+</section> 
+<!--Module Banner-->
+
+<div class="row">
+    <div class="col-sm-12 padding-20">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs" id="transaction-tabs">
+                    <li class="active"><a data-toggle="tab" class="show-cursor" data-target="#new-feedback">New Feedback</a></li>
+                    <li><a data-toggle="tab" class="show-cursor" data-target="#display-feedback" onclick="getFeedbackData();">Feedback</a></li>
+                </ul>
+                <form action="" id="transaction-tabs-form" method="POST">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+            <div class="panel-body panelH">
+                <div class="tab-content">
+                    <div id="new-feedback" class="tab-pane fade in active">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row padding-10">
+                                    <div class="col-sm-4">
+                                        <div id="ajax-feedback-response" class="text-center"></div>
+                                    </div>
+                                </div>
+                                <form class="form-horizontal margin" id="feedback-form" >
+                                    <div class="form-group">
+                                        <label for="category" class="control-label col-sm-1">Subject<span class="mandatory">*<span></label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="feed_subject" id="feed_subject">
+                                                    <option value="">--Select--</option>
+                                                @foreach($feedback_options as $index =>$subject)
+                                                    <option value="{{$subject->id}}">{{$subject->option_value}}</option>
+                                                @endforeach
+                                            </select>
+                                            <div id="ajax_feed_subject_error"></div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="file" class="control-label col-sm-1">Rating<span class="mandatory">*<span></label>
+                                        <section class='rating-widget'>
+                                            <div class='rating-stars text-center'>
+                                                <ul id='stars'>
+                                                    <li class='star' title='Poor' data-value='1' onclick="giveRating(this);">
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='Fair' data-value='2' onclick="giveRating(this);">
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='Good' data-value='3' onclick="giveRating(this);">
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='Excellent' data-value='4' onclick="giveRating(this);">
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='WOW!!!' data-value='5' onclick="giveRating(this);">
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class='success-box'>
+                                                <div class='clearfix'></div>
+                                                <div class='text-message' style="color:green"></div>
+                                                <div class='clearfix'></div>
+                                            </div>
+                                        </section>
+                                        <!-- Rating code end -->
+                                    </div> 
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-sm-offset-2">
+                                            <div id="ajax_feed_rating_error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class="control-label col-sm-1">Feedback</label>
+                                        <div class="col-sm-3">
+                                            <textarea name="feedback" id="feedback" cols="30" rows="5" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="feed_rating" id="feed_rating" value="">
+                                    {{csrf_field()}}
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-sm-offset-1">
+                                            <input type="submit" value="Submit" class="btn btn-success">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="display-feedback" class="tab-pane">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <select name="page_limit" class="form-control marg" onchange="getFeedbackData($(this).val())">
+                                        @foreach($per_page as $index => $page)
+                                        <option value="{{$index}}">{{$page}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="search-box">
+                                    <form action="">
+                                        <input type="search" id="feedback-table" placeholder="Search">
+                                        <i class="fa fa-search"></i>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="display-block" id="paginate_feedbackdetail">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+@endsection

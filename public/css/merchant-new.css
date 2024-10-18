@@ -1,0 +1,23 @@
+ .card {
+        background-color: #fff;
+        border-radius: 10px;
+        border: #f78ca0 1px solid;
+        padding: 10px 5px 10px 5px;
+    }
+
+
+
+ .card {
+        border: thin solid #dbd4da;
+        border-radius: 10px;
+        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;
+        border-top-color: #dbd4da;
+    }
+
+
+
+@media (min-width: 768px)
+.col-sm-5-dash {
+    width: 49.10%!important;
+}

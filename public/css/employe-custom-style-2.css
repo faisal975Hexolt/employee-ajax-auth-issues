@@ -1,0 +1,114 @@
+.sidebar-wrapper{
+    width: 230px;
+}
+
+/* .sidebar-wrapper .sidebar-brand {
+  
+    background-color: white;
+  } */
+  .managepay-logo {
+    max-width: 150px !important;
+    background-color: #FFFFFF !important;
+    border-radius: 2px solid #fff !important;
+}
+  .sidebar-wrapper .sidebar-menu ul li a{
+      border-bottom: 1px solid rgb(110, 110, 110);
+      background-color:#5d1c84;
+      padding-left: 15px;
+      line-height:2;
+      font-family: 'Open Sans', sans-serif;
+      color: #fff;
+      transition: color 0.3s;
+      font-size: 15px !important;
+  }
+
+  .sidebar-wrapper .sidebar-menu ul li a:hover{
+      background-color: #178ddb;
+      transition: color 0.3s;
+  }
+  
+  .navbar-default{
+      background-color: #5d1c84;
+      color: #fff;
+  }
+
+  .navbar-default .navbar-nav > li > a{
+      color: #fff !important;
+           
+  }
+  @media (min-width:991px){
+    .navbar-default .navbar-nav > li > a{
+       position: relative;
+       left: 50px;
+       
+    }
+  }
+  .navbar-default .navbar-nav > li > a:hover{
+    color: #fff;
+    background: none;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #178ddb;
+    color: #555;
+}
+
+input[type="file"] {
+    display: none !important;
+}
+.inputfile + label {
+    color: #2f89fc;
+    border: 2px solid currentColor;
+}
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    margin-bottom: 0 !important;
+}
+.custom-file-upload {
+    width: 100%;
+}
+
+.button124,.buttonA125  {
+    border-radius: 4px;
+    background-color: rgb(245, 105, 105);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 6px 3px;
+    width: 10%;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: relative;
+    bottom: 8px;
+    margin: 5px;
+}
+
+.search-box .fa {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 17%;
+    height: 37.5px;
+    position: absolute;
+    top: 0;
+    right: 1px;
+    border-radius: 50%;
+    color: white;
+    background: #178dbb;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+
+.display-none{
+    display: none;
+}
